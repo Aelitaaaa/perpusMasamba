@@ -14,23 +14,14 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" autocomplete="email" required value="{{ old('email') }}">
-                            @error('email')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <input type="email" name="email" id="email" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" autocomplete="current-password" required>
-                            @error('password')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <input type="password" name="password" id="password" class="form-control" required>
                         </div>
-
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </form>
                 </div>
@@ -39,5 +30,29 @@
     </div>
 
     @include('template.script')  
+    @include('sweetalert::alert')
+
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session('success') }}',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    </script>
+    @elseif(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session('error') }}',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    </script>
+    @endif
+
 </body>
 </html>

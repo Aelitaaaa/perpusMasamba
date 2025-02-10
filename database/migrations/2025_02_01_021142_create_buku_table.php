@@ -17,7 +17,7 @@ class CreateBukuTable extends Migration
             $table->timestamps();
         });
     }
-// tanda
+
     public function down()
     {
         Schema::dropIfExists('buku');

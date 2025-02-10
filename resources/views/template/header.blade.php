@@ -9,7 +9,7 @@
     </div>
 
     <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <form class="search-form d-flex align-items-center" method="GET" action="#">
             <input type="text" name="query" placeholder="Search" title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
@@ -17,12 +17,15 @@
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-            
+
             <li class="nav-item dropdown">
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <a class="nav-link nav-icon dropdown-toggle" href="#" id="profileDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" 
+                    aria-labelledby="profileDropdown" data-bs-auto-close="outside">
+                    
                     @guest
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('login') }}">
@@ -30,10 +33,16 @@
                                 <span>Login</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('register') }}">
+                                <i class="bi bi-person-plus"></i>
+                                <span>Sign Up</span>
+                            </a>
+                        </li>
                     @else
-                        <li class="dropdown-header">
-                            <h6>{{ Auth::user()->name }}</h6>
-                            <span>{{ ucfirst(Auth::user()->role) }}</span>
+                        <li class="dropdown-header text-center">
+                            <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                            <span class="text-muted">{{ ucfirst(Auth::user()->role) }}</span>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
@@ -56,7 +65,8 @@
                     @endguest
                 </ul>
             </li>
+
         </ul>
     </nav>
+    @include('template.script')
 </header>
-

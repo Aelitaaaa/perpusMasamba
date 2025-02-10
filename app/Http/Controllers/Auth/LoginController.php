@@ -1,47 +1,40 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash; 
+
 
 class LoginController extends Controller
 {
     public function login(Request $request)
     {
         
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        
-        $user = User::where('Email', $request->email)->first();
+       
+        $credentials = $request->only('email', 'password');
 
-        
-        if ($user && Hash::check($request->password, $user->Password)) {
-            
-            Auth::login($user);
-
+       
+        if (Auth::attempt($credentials)) {
            
-            if ($user->role == 'administrator') {
-                return redirect('/admin/dashboard');
-            } elseif ($user->role == 'petugas') {
-                return redirect('/petugas/dashboard');
-            } else {
-                return redirect('/');  
-            }
+            return redirect()->intended('/index')->with('success', 'Berhasil Login!');
         }
+        dd(Auth::attempt($credentials), $credentials);
 
-        
-        return back()->withErrors(['email' => 'Email atau password salah!']);
+        return redirect()->back()->with('error', 'Username atau Password Salah');
     }
-
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
-        return redirect('/login');
+        Auth::logout(); 
+        $request->session()->invalidate(); 
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('success', 'Berhasil Logout!');
     }
 }
+

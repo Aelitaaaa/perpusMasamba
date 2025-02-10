@@ -94,6 +94,7 @@ return [
 
     'passwords' => [
         'users' => [
+            'model' => App\Models\User::class,
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,

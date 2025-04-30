@@ -50,11 +50,13 @@ Sistem ini memudahkan pengelolaan buku, pengguna, dan transaksi peminjaman/penge
 
 ## 📦 Instalasi
 
+<p align="center">
 git clone https://github.com/Aelitaaaa/perpusMasamba.git
 cd perpustakaan-app
 composer install
 cp .env.example .env
 php artisan key:generate
+</p>
 
  ## 🛡️ Hak Akses
 Middleware disesuaikan untuk membatasi akses berdasarkan role

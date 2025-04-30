@@ -1,6 +1,4 @@
-# Membuat file README.md untuk proyek perpustakaan dengan format yang diinginkan
 
-readme_perpus_laravel = """
 <p align="center">
   <img src="https://img.icons8.com/ios-filled/500/000000/library.png" width="150">
 </p>

@@ -50,7 +50,7 @@ Sistem ini memudahkan pengelolaan buku, pengguna, dan transaksi peminjaman/penge
 
 ## 📦 Instalasi
 
-<p align="center">
+<p>
 git clone https://github.com/Aelitaaaa/perpusMasamba.git <br>
 cd perpustakaan-app <br>
 composer install <br>

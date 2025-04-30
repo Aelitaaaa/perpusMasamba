@@ -52,7 +52,6 @@ Sistem ini memudahkan pengelolaan buku, pengguna, dan transaksi peminjaman/penge
 
 <p>
 git clone https://github.com/Aelitaaaa/perpusMasamba.git <br>
-cd perpustakaan-app <br>
 composer install <br>
 cp .env.example .env <br>
 php artisan key:generate
